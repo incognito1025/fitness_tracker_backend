@@ -1,13 +1,18 @@
+// DEPENDENCIES
 const express = require("express");
 
-//HEALTH CHECK ROUTE
+// CONFIGURATION
 const app = express();
 
-app.get("/", (request, response) => {
-  response.send("Hello World");
-});
+// CONTROLLERS
+const workoutsController = require("./controllers/workoutsController")
 
-const workoutsController = require ("./controllers/workoutsController")
+// HEALTH CHECK ROUTE
+app.get("/", (req, res) => {
+  res.send("Welcome to my fitness app!")
+})
+
+// WHEN RECEIVING A REQUEST OR RESPONSE ON THE ROUTE `/workouts` WE WANT OUR APP TO USE THE `workoutsController`
 app.use("/workouts", workoutsController)
 
 module.exports = app;
